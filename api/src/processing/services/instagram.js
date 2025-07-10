@@ -215,6 +215,15 @@ export default function instagram(obj) {
     async function requestGQL(id, cookie) {
         const { headers, body } = await getGQLParams(id, cookie);
 
+        const finalHeaders = {
+            ...embedHeaders,
+            ...headers,
+            ...(cookie ? { cookie } : {}),
+            'content-type': 'application/x-www-form-urlencoded',
+            'X-FB-Friendly-Name': 'PolarisPostActionLoadPostQueryQuery',
+        }
+        console.log(finalHeaders);
+
         const req = await fetch('https://www.instagram.com/graphql/query', {
             method: 'POST',
             dispatcher,
