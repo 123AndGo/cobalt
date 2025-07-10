@@ -221,7 +221,7 @@ export default function instagram(obj) {
             headers: {
                 ...embedHeaders,
                 ...headers,
-                cookie,
+                ...(cookie ? { cookie } : {}),
                 'content-type': 'application/x-www-form-urlencoded',
                 'X-FB-Friendly-Name': 'PolarisPostActionLoadPostQueryQuery',
             },
